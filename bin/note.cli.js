@@ -26,6 +26,16 @@ switch (command) {
       editNote(Number(args[0]));
     });
     break;
+  case "done":
+    import("../src/core/done.js").then(({ markDone }) => {
+      markDone(Number(args[0]));
+    });
+    break;
+  case "tag":
+    import("../src/core/tag.js").then(({ addTag }) => {
+      addTag(Number(args[0]), args[1]);
+    });
+    break;
 
   default:
     console.log(`❓ Unknown command: ${command}`);

@@ -2,7 +2,11 @@
   "notes": [
     {
       "title": "first note",
-      "description": "this is my first note and i'm going to do this as well as cli for my future works Inshallah"
+      "description": "this is my first note and i'm going to do this as well as cli for my future works Inshallah",
+      "tags": [
+        "important",
+        "personal"
+      ]
     },
     {
       "title": "new title",
@@ -11,6 +15,11 @@
     {
       "title": "ficha",
       "description": "ficha desc"
+    },
+    {
+      "title": "Study CLI",
+      "description": "Finish all features",
+      "done": true
     }
   ]
 }
