@@ -36,6 +36,11 @@ switch (command) {
       addTag(Number(args[0]), args[1]);
     });
     break;
+  case "search":
+    import("../src/core/search.js").then(({ searchNotes }) => {
+      searchNotes(args.join(" "));
+    });
+    break;
 
   default:
     console.log(`❓ Unknown command: ${command}`);

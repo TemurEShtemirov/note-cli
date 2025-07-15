@@ -5,7 +5,8 @@
       "description": "this is my first note and i'm going to do this as well as cli for my future works Inshallah",
       "tags": [
         "important",
-        "personal"
+        "personal",
+        "urgent"
       ]
     },
     {
@@ -20,6 +21,14 @@
       "title": "Study CLI",
       "description": "Finish all features",
       "done": true
+    },
+    {
+      "title": "Get eggs",
+      "description": "buy them quick"
+    },
+    {
+      "title": "Watch movie",
+      "description": "relax"
     }
   ]
 }
