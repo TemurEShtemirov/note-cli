@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+import { showWelcome } from "../src/ui/welcome.js";
 import { argv } from "node:process";
 import { addNote } from "../src/core/add.js";
 import { listNotes } from "../src/core/list.js";
@@ -8,7 +8,25 @@ import { deleteNote } from "../src/core/delete.js";
 // grab the command and arguments
 const [, , command, ...args] = argv;
 
+await showWelcome();
+
 switch (command) {
+  case "help":
+    console.log(`🧠 Boost CLI Help:
+    - add "Title" "Description"
+    - list
+    - delete <index>
+    - edit <index>
+    - done <index>
+    - tag <index> "tag1, tag2"
+    - search "query"
+    - stats
+    - config <key> <value>
+    - export <format>`);
+    break;
+  case "version":
+    console.log("Boost CLI v1.0.0");
+    break;
   case "add":
     addNote(args[0], args[1]);
     break;
