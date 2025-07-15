@@ -51,6 +51,11 @@ switch (command) {
       handleConfig(args[0], args[1], args[2]);
     });
     break;
+  case "export":
+    import("../src/core/export.js").then(({ exportNotes }) => {
+      exportNotes(args[0]); // format = 'json', 'txt', 'md'
+    });
+    break;
 
   default:
     console.log(`❓ Unknown command: ${command}`);

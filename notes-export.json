@@ -1,0 +1,32 @@
+[
+  {
+    "title": "first note",
+    "description": "this is my first note and i'm going to do this as well as cli for my future works Inshallah",
+    "tags": [
+      "important",
+      "personal",
+      "urgent"
+    ]
+  },
+  {
+    "title": "new title",
+    "description": "new desc"
+  },
+  {
+    "title": "ficha",
+    "description": "ficha desc"
+  },
+  {
+    "title": "Study CLI",
+    "description": "Finish all features",
+    "done": true
+  },
+  {
+    "title": "Get eggs",
+    "description": "buy them quick"
+  },
+  {
+    "title": "Watch movie",
+    "description": "relax"
+  }
+]
