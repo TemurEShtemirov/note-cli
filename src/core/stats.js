@@ -1,5 +1,6 @@
 import { getDB } from "../utils/db.js";
 import chalk from "chalk";
+import Table from "cli-table3";
 
 export async function showStats() {
   const db = await getDB();
@@ -10,16 +11,21 @@ export async function showStats() {
   const pending = total - done;
 
   const taggedNotes = notes.filter((n) => n.tags?.length);
-  const totalTags = taggedNotes.reduce(
-    (acc, note) => acc + note.tags.length,
-    0
+  const totalTags = taggedNotes.reduce((acc, n) => acc + n.tags.length, 0);
+
+  const statsTable = new Table({
+    head: [chalk.cyan("Metric"), chalk.green("Value")],
+    colWidths: [25, 15],
+  });
+
+  statsTable.push(
+    ["📁 Total Notes", chalk.yellow(total)],
+    ["✅ Done", chalk.green(done)],
+    ["🕒 Pending", chalk.red(pending)],
+    ["🏷️ Tagged Notes", chalk.magenta(taggedNotes.length)],
+    ["🔖 Total Tags Used", chalk.cyan(totalTags)]
   );
 
-  console.log(chalk.blue.bold("\n📊 Boost CLI Stats\n"));
-
-  console.log(`🗂️ Total notes: ${chalk.cyan(total)}`);
-  console.log(`✅ Done: ${chalk.green(done)}`);
-  console.log(`🕒 Pending: ${chalk.yellow(pending)}`);
-  console.log(`🏷️ Tagged notes: ${chalk.magenta(taggedNotes.length)}`);
-  console.log(`🔖 Total tags used: ${chalk.cyan(totalTags)}\n`);
+  console.log(chalk.bold.underline("\n📊 Boost CLI Stats"));
+  console.log(statsTable.toString());
 }

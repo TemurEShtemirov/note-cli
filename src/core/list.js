@@ -1,20 +1,36 @@
 import { getDB } from "../utils/db.js";
 import chalk from "chalk";
+import Table from "cli-table3";
 
 export async function listNotes() {
   const db = await getDB();
+  const notes = db.data.notes;
 
-  if (!db.data.notes.length) {
-    console.log(chalk.gray("📭 No notes yet."));
+  if (!notes.length) {
+    console.log(chalk.gray("📭 No notes found."));
     return;
   }
 
-db.data.notes.forEach((note, i) => {
-  const doneMark = note.done ? chalk.green("✅") : chalk.yellow("🕒");
-  const tags = note.tags?.length ? chalk.cyan(`[${note.tags.join(", ")}]`) : "";
+  const table = new Table({
+    head: [
+      chalk.cyan("#"),
+      chalk.blue("Title"),
+      chalk.yellow("Description"),
+      chalk.green("Status"),
+      chalk.magenta("Tags"),
+    ],
+    colWidths: [5, 20, 40, 10, 25],
+  });
 
-  console.log(`${doneMark} ${chalk.yellow(i + 1)}. ${chalk.bold(note.title)} ${tags}
-   ${note.description}`);
-});
+  notes.forEach((note, index) => {
+    table.push([
+      index + 1,
+      chalk.bold(note.title),
+      note.description || "",
+      note.done ? chalk.green("✅") : chalk.yellow("🕒"),
+      note.tags?.length ? note.tags.join(", ") : chalk.gray("—"),
+    ]);
+  });
 
+  console.log(table.toString());
 }
