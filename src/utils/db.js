@@ -1,11 +1,12 @@
-import { Low } from 'lowdb';
-import { JSONFile } from 'lowdb/node';
+import { Low } from "lowdb";
+import { JSONFile } from "lowdb/node";
 
-const adapter = new JSONFile('db.json');
-const db = new Low(adapter);
+const adapter = new JSONFile("db.json");
+const defaultData = { notes: [] };
+const db = new Low(adapter, defaultData);
 
 export async function getDB() {
   await db.read();
-  db.data ||= { notes: [] };
+  db.data ||= defaultData; // still safe fallback
   return db;
 }
