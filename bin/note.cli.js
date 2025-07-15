@@ -41,6 +41,16 @@ switch (command) {
       searchNotes(args.join(" "));
     });
     break;
+  case "stats":
+    import("../src/core/stats.js").then(({ showStats }) => {
+      showStats();
+    });
+    break;
+  case "config":
+    import("../src/core/config.js").then(({ handleConfig }) => {
+      handleConfig(args[0], args[1], args[2]);
+    });
+    break;
 
   default:
     console.log(`❓ Unknown command: ${command}`);
